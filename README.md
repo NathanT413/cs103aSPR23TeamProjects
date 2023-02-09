@@ -8,7 +8,7 @@ print("Hello World")
 '''
 
 Team:
-- Nathan Tran
+- Nathan Tran (NathanT413)
 - Grace Hu
 - Eric Wang
 - Brandon Lacy
