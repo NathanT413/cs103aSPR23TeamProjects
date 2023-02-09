@@ -6,3 +6,10 @@ This is for our team python project
 ''' python
 print("Hello World")
 '''
+
+Team:
+- Nathan Tran
+- Grace Hu
+- Eric Wang
+- Brandon Lacy
+- Yundi Ma
