@@ -11,5 +11,5 @@ Team:
 - Nathan Tran
 - Grace Hu
 - Eric Wang
-- Brandon Lacy
+- Brandon Lacy (AG3NTZ3R0)
 - Yundi Ma
