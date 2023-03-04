@@ -45,6 +45,11 @@ class GPT():
 		response = completion.choices[0].text
 		return response
 
+	def code_docs(self, lang, prompt):
+		'''Generate Python code documentation.'''
+		query = f"Document the following {lang} code with in line comments and return the updated code: {prompt}"
+		return self.getResponse(query)
+
 
 if __name__=='__main__':
 	'''

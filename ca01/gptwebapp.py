@@ -95,12 +95,12 @@ def gpt_code_docs():
 	Brandon J. Lacy (AG3NTZ3R0)
 	'''
 	if request.method == 'POST':
-		prompt = request.form['prompt']
-		answer = gptAPI.getResponse(f"Document the following Python code with in line comments and return the updated code: {prompt}")
+		lang = request.form['lang']
+		code = request.form['code']
+		answer = gptAPI.code_docs(lang, code)
 		return f'''
 			<h1>ChatGPT Code Documentation</h1>
-			<h2>Prompt</h2>
-			<h3>{prompt}</h3>
+			<h2>Response</h2>
 			<pre style="border:thin solid black">{answer}</pre>
 		'''
 	else:
@@ -108,8 +108,13 @@ def gpt_code_docs():
 			<h1>ChatGPT Code Documentation</h1>
 			<h2>Query</h2>
 			<form method="post">
-				<textarea name="prompt"></textarea>
-				<p><input type=submit></p>
+				<h3><label for="lang">Programming Language</label></h3>
+				<textarea name="lang"></textarea>
+				<br>
+				<h3><label for="code">Code: <label></h3>
+				<textarea name="code"></textarea>
+				<br>
+				<input type=submit>
 			</form>
 		'''
 
