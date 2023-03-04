@@ -47,7 +47,7 @@ class GPT():
 
 	def code_docs(self, lang, prompt):
 		'''
-		Generate Python code documentation.
+		Generate code documentation.
 		Brandon J. Lacy (AG3NTZ3R0)
 		'''		
 		query = f"Document the following {lang} code with in line comments and return the updated code: {prompt}"
