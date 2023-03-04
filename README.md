@@ -1,4 +1,4 @@
-# CS103A - Sprint 2023 - Team Project
+# CS103A - Spring 2023 - Team Project
 
 A folder with all of our team's work.
 
