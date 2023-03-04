@@ -32,7 +32,10 @@ app.secret_key = b'_5#y2L"F4Q789789uioujkkljkl...8z\n\xec]/'
 
 @app.route('/')
 def index():
-	''' display a link to the general query page '''
+	'''
+	An index to host a series of links to navigate the application.
+	Brandon J. Lacy (AG3NTZ3R0)
+	'''
 	print('processing / route')
 	return f'''
 		<h1>GPT Demo</h1>
@@ -83,11 +86,14 @@ def gptdemo():
 def about():
 	'''
 	A page to describe the intent of gptwebapp.py.
+	Brandon J. Lacy (AG3NTZ3R0)
 	'''
 	return '''
 		<h1>About</h1>
 		<h2>Description</h2>
-		<p></p>
+		<p>The intent of this application is for the team to display their capabilities with Python and Flask, as well as basic HTML and minor cases of CSS, to send engineer prompts being sent to ChatGPT to generate 
+useful results. The motivation behind this assignment is associated with the recent trend in the incorporation of prompt engineering into websites to leverage the powerful capabilities ChatGPT has available. There is the 
+additional benefit of experience of utilizing git with a team.</p>
 	'''
 
 
