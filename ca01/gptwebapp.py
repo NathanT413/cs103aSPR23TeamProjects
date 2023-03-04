@@ -74,6 +74,7 @@ def gptdemo():
 def gpt_code_docs():
 	'''
 	Create documentation for an undocumented code file.
+	Brandon J. Lacy (AG3NTZ3R0)
 	'''
 	if request.method == 'POST':
 		prompt = request.form['prompt']
