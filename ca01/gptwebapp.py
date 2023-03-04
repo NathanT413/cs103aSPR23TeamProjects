@@ -42,7 +42,9 @@ def index():
 		<br>
 		<h2><a href="{url_for('team')}">Team</a></h2>
 		<br>
-		<h2><a href="{url_for('gpt_code_docs')}'>Code Documentation</a></h2>
+		<h2><a href="{url_for('gpt_code_docs')}">Code Documentation</a></h2>
+		<br>
+		<h2><a href=
 		<br>
 	 '''
 
@@ -64,7 +66,7 @@ def gptdemo():
 			<div style="border:thin solid black">{answer}</div>
 			Here is the answer in "pre" mode:
 			<pre style="border:thin solid black">{answer}</pre>
-			<a href={url_for('gptdemo')}> make another query</a>
+			<a href="{url_for('gptdemo')}"> make another query</a>
 		'''
 	else:
 		return '''
@@ -103,8 +105,8 @@ def team():
 incident response team for the Office of the Comptroller of the Commonwealth of Massachusetts and as a member of the data science and insights team for Hubbell Inc. Brandon is excited to expand his knowledge of machine learning 
 in an academmic setting to allow him to gain a deeper understand of the technology from both an application and mathematical perspective.</p>
 		<h3>Role</h3>
-		<p>Brandon was responsible for the the creation of the ca01 folder, the duplication of the gptwebapp.py and gpt.py files from lesson15, the creation of the <a href={url_for('gpt_code_docs')}>/gpt_code_docs</a> and 
-<a href={url_for('gpt_code_docs_about')}>/gpt_code_docs/about</a> routes in gptwebapp.py and code_docs method in gpt.py, the creation of the team page, the creation of the about page, and his personal page.</p>
+		<p>Brandon was responsible for the the creation of the ca01 folder, the duplication of the gptwebapp.py and gpt.py files from lesson15, the creation of the <a href="{url_for('gpt_code_docs')}">/gpt_code_docs</a> and 
+<a href="{url_for('gpt_code_docs_about')}">/gpt_code_docs/about</a> routes in gptwebapp.py and code_docs method in gpt.py, the creation of the team page, the creation of the about page, and his personal page.</p>
 	'''
 
 
@@ -120,15 +122,15 @@ def gpt_code_docs():
 		answer = gptAPI.code_docs(lang, code)
 		return f'''
 			<h1>ChatGPT Code Documentation</h1>
-			<h2><a href={url_for('gpt_code_docs_about')}>About</a></h2>
+			<h2><a href="{url_for('gpt_code_docs_about')}">About</a></h2>
 			<h2>Response</h2>
 			<pre style="border:thin solid black">{answer}</pre>
-			<h2><a href={url_for('index')}>Index</a></h2>
+			<h2><a href="{url_for('index')}">Index</a></h2>
 		'''
 	else:
 		return f'''
 			<h1>ChatGPT Code Documentation</h1>
-			<h2><a href={url_for('gpt_code_docs_about')}>About</a></h2>
+			<h2><a href="{url_for('gpt_code_docs_about')}">About</a></h2>
 			<h2>Query</h2>
 			<form method="post">
 				<h3><label for="lang">Programming Language</label></h3>
@@ -139,7 +141,7 @@ def gpt_code_docs():
 				<br>
 				<input type=submit>
 			</form>
-			<h2><a href={url_for('index')}>Index</a></h2>
+			<h2><a href="{url_for('index')}">Index</a></h2>
 		'''
 
 
@@ -157,7 +159,7 @@ work to be completed, which leads to trouble down the road when maintenance need
 critical development practice, we want to avoid the pain for the developer down the road that may need to interact with code with lackluster documentation.</p>
 		<h2>Instructions</h2>
 		<p>The route is incredibly simple to use, as we understand your lack of time on unnecessary tasks. Simply enter the programming language of the code and the code in their respective text boxes.</p>
-		<h2><a href={url_for('gpt_code_docs')}>Back to Code Documentation</a></h2>
+		<h2><a href="{url_for('gpt_code_docs')}">Back to Code Documentation</a></h2>
 	'''
 
 
