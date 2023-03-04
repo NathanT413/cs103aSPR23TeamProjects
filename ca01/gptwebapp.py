@@ -70,6 +70,31 @@ def gptdemo():
 		'''
 
 
+@app.route('/code_docs', methods=['GET', 'POST'])
+def gpt_code_docs():
+	'''
+	Create documentation for an undocumented code file.
+	'''
+	if request.method == 'POST':
+		prompt = request.form['prompt']
+		answer = gptAPI.getResponse(f"Document the following Python code with in line comments and return the updated code: {prompt}")
+		return f'''
+			<h1>ChatGPT Code Documentation</h1>
+			<h2>Prompt</h2>
+			<h3>{prompt}</h3>
+			<pre style="border:thin solid black">{answer}</pre>
+		'''
+	else:
+		return '''
+			<h1>ChatGPT Code Documentation</h1>
+			<h2>Query</h2>
+			<form method="post">
+				<textarea name="prompt"></textarea>
+				<p><input type=submit></p>
+			</form>
+		'''
+
+
 if __name__=='__main__':
     # MacOS uses 5000 so need to run on 5001
     app.run(debug=True,port=5001)
