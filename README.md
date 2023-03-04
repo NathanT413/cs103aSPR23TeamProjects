@@ -2,12 +2,6 @@
 
 A folder with all of our team's work.
 
-This is for our team python project
-
-'''
-print("Hello World")
-'''
-
 Team:
 - Grace Hu
 - Brandon Lacy (AG3NTZ3R0)
