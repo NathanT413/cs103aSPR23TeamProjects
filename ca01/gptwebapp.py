@@ -37,6 +37,7 @@ def index():
 	return f'''
 		<h1>GPT Demo</h1>
 		<a href="{url_for('gptdemo')}">Ask questions to GPT</a>
+		<a href="{url_for('team')}">Team</a>
 	 '''
 
 
@@ -68,6 +69,23 @@ def gptdemo():
 				<p><input type=submit value="get response">
 			</form>
 		'''
+
+@app.route('/team')
+def team():
+	'''
+	A page with a short biography about each team member.
+	'''
+	return '''
+		<h1>Team</h1>
+		<h2>Brandon J. Lacy</h2>
+		<h3>Biography</h3>
+		<p>Brandon earned a Bachelor of Science degree in computer science and cybersecurity from Sacred Heart University. He has experience in both the public and private sector. He has worked as a member of the 
+incident response team for the Office of the Comptroller of the Commonwealth of Massachusetts and as a member of the data science and insights team for Hubbell Inc. Brandon is excited to expand his knowledge of machine learning 
+in an academmic setting to allow him to gain a deeper understand of the technology from both an application and mathematical perspective.</p>
+		<h3>Role</h3>
+		<p>Brandon was responsible for the the creation of the ca01 folder, the duplication of the gptwebapp.py and gpt.py files from lesson15, the creation of the /code_docs route in gptwebapp.py and code_docs method in 
+gpt.py, the creation of the team page, and his personal page.</p>
+	'''
 
 
 @app.route('/code_docs', methods=['GET', 'POST'])
