@@ -36,8 +36,12 @@ def index():
 	print('processing / route')
 	return f'''
 		<h1>GPT Demo</h1>
-		<a href="{url_for('gptdemo')}">Ask questions to GPT</a>
-		<a href="{url_for('team')}">Team</a>
+		<h2><a href="{url_for('gptdemo')}">Ask questions to GPT</a></h2>
+		<br>
+		<h2><a href="{url_for('team')}">Team</a></h2>
+		<br>
+		<h2><a href="{url_for('code_docs')}'>Code Documentation</a></h2>
+		<br>
 	 '''
 
 
