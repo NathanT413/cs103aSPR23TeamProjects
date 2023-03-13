@@ -2,9 +2,13 @@
 
 A folder with all of our team's work.
 
-Team:
+## Team
 - Grace Hu
 - Brandon Lacy (AG3NTZ3R0)
 - Yundi Ma
 - Nathan Tran
 - Eric Wang
+
+## Projects
+- CA01
+- PA03
