@@ -1,15 +1,14 @@
-# cs103aSPRT23TeamProjects
-a folder with all of our team work
+# CS103A - Spring 2023 - Team Project
 
-This is for our team python project
+A folder with all of our team's work.
 
-''' python
-print("Hello World")
-'''
-
-Team:
-- Nathan Tran (NathanT413)
+## Team
 - Grace Hu
-- Eric Wang
-- Brandon Lacy
+- Brandon Lacy (AG3NTZ3R0)
 - Yundi Ma
+- Nathan Tran (NathanT413)
+- Eric Wang
+
+## Projects
+- CA01
+- PA03
