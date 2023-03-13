@@ -6,7 +6,7 @@ A folder with all of our team's work.
 - Grace Hu
 - Brandon Lacy (AG3NTZ3R0)
 - Yundi Ma
-- Nathan Tran
+- Nathan Tran (NathanT413)
 - Eric Wang
 
 ## Projects
