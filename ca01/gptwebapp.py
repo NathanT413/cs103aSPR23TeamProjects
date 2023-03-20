@@ -47,7 +47,7 @@ def index():
 		<br>
 		<h2><a href="{url_for('gpt_code_docs')}">Code Documentation</a></h2>
 		<br>
-		<h2><a href=
+		<h2><a href="{url_for('sarcasm')}">Sarcasm</a></h2>
 		<br>
 	 '''
 
@@ -102,6 +102,7 @@ def team():
 	'''
 	A page with a short biography about each team member.
 	Brandon J. Lacy (AG3NTZ3R0)
+	Eric Wang
 	'''
 	return f'''
 		<h1>Team</h1>
@@ -113,9 +114,15 @@ in an academmic setting to allow him to gain a deeper understand of the technolo
 		<h3>Role</h3>
 		<p>Brandon was responsible for the the creation of the ca01 folder, the duplication of the gptwebapp.py and gpt.py files from lesson15, the creation of the <a href="{url_for('gpt_code_docs')}">/gpt_code_docs</a> and 
 <a href="{url_for('gpt_code_docs_about')}">/gpt_code_docs/about</a> routes in gptwebapp.py and code_docs method in gpt.py, the creation of the team page, the creation of the about page, and his personal page.</p>
+		
+		<h2>Eric Wang</h2>
+		<h3>Bio</h3>
+		<p>Eric is a senior studying Econ and CS at Brandeis University. He has developed a webapp using flask and js during his time at his summer internship at a non-profit.
+		He is an Arsenal fanatic with deep, deep disdain for Spurs and their trophyless club.</p>
+		<h3>Role</h3>
+		<p>Eric is responsible for creating the function sarcasm at <a href="{url_for('sarcasm')}">/sarcasm</a> rountes in gpt.py and his personal page</p>
 	'''
-
-
+	
 @app.route('/code_docs', methods=['GET', 'POST'])
 def gpt_code_docs():
 	'''
@@ -167,6 +174,49 @@ critical development practice, we want to avoid the pain for the developer down 
 		<p>The route is incredibly simple to use, as we understand your lack of time on unnecessary tasks. Simply enter the programming language of the code and the code in their respective text boxes.</p>
 		<h2><a href="{url_for('gpt_code_docs')}">Back to Code Documentation</a></h2>
 	'''
+
+@app.route('/sarcasm/about', methods=['GET','POST'])
+def sarcasm_about():
+	'''
+	The about page that corresponds with sarcasm and explains the intent as well as the way to operate the route.
+	Eric Wang
+	'''
+	return f'''
+		<h1>About Sarcasm</h1>
+		<h2>Description</h2>
+		<p>I don't know what to put here</p>
+		<h2>Instructions</h2>
+		<p>Just as a random question</p>
+		<h2><a href="{url_for('sarcasm')}">Back to Sarcasm</a></h2>
+	'''
+
+@app.route('/sarcasm', methods=['GET','POST'])
+def sarcasm():
+	'''
+	Generates sarcastic response from user asked question
+	Eric Wang
+	'''
+	if request.method == 'POST':
+		question = request.form['question']
+		ans = gptAPI.sarcasm(question)
+		return f'''
+		<h1>ChatGPT Sarcastic Response</h1>
+		<h2><a href="{url_for('sarcasm_about')}">About</a></h2>
+		<pre style="border:thin solid black">{ans}</pre>
+		'''
+	else:
+		return f'''
+			<h1>ChatGPT Sarcasm</h1>
+			<h2><a href="{url_for('sarcasm_about')}">About</a></h2>
+			<h2>Query</h2>
+			<form method="post">
+				<h3><label for="question">Questions: </label></h3>
+				<textarea name="question"></textarea>
+				<br>
+				<input type=submit>
+			</form>
+			<h2><a href="{url_for('index')}">Index</a></h2>
+		'''
 
 
 if __name__=='__main__':

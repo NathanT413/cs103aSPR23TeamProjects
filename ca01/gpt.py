@@ -19,7 +19,6 @@ On Windows:
 '''
 import openai
 
-
 class GPT():
 	''' make queries to gpt from a given API '''
 	def __init__(self,apikey):
@@ -51,6 +50,14 @@ class GPT():
 		Brandon J. Lacy (AG3NTZ3R0)
 		'''		
 		query = f"Document the following {lang} code with in line comments and return the updated code: {prompt}"
+		return self.getResponse(query)
+	
+	def sarcasm(self, question):
+		'''
+		Generate Sarcastic Response
+		Eric Wang
+		'''
+		query = f"{question}, give me a sarcastic response"
 		return self.getResponse(query)
 
 
