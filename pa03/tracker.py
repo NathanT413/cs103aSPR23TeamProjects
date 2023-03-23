@@ -5,20 +5,25 @@ Author: Brandon J. Lacy (AG3NTZ3R0)
 '''
 
 
+import sys
+
 from transaction import Transaction
 
 
-def main():
-    '''
-    The main location in which the code will execute.
-    
-    Author: Brandon J. Lacy (AG3NTZ3R0)
-    '''
-    filepath = "tracker.db"
-    trans_db = Transaction(filepath)
-    
-    print(trans_db.selectAll())
+# Store the arguments from the command line execution of the script
+# No arguments so prompt the user for them
+if len(sys.argv) == 1:
+    arg = input('cmd > ').split(' ')
+# Numerous arguments so prompt the user to select one
+elif len(sys.argv) > 2:
+    print("Only one argument at a time.")
 
+    args = [{i: sys.argv[1:][i]} for i in range(len(sys.argv[1:]))]
+    for arg in args: print(arg)
 
-if __name__ == '__main__':
-    main()
+    choice = int(input("Which argument should be executed? "))
+    arg = sys.argv[1:][choice]
+else:
+    arg = sys.argv[1]
+
+    
