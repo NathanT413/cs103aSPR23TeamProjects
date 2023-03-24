@@ -18,8 +18,8 @@ if len(sys.argv) == 1:
 elif len(sys.argv) > 2:
     print("Only one argument at a time.")
 
-    args = [{i: sys.argv[1:][i]} for i in range(len(sys.argv[1:]))]
-    for arg in args: print(arg)
+    args = [(i, sys.argv[1:][i]) for i in range(len(sys.argv[1:]))]
+    for arg in args: print(f"{arg[0]}: {arg[1]}")
 
     choice = int(input("Which argument should be executed? "))
     arg = sys.argv[1:][choice]
