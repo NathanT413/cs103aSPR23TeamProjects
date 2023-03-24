@@ -9,7 +9,7 @@ import sys
 
 from transaction import Transaction
 
-
+# Author: Brandon J. Lacy (AG3NTZ3R0)
 # Store the arguments from the command line execution of the script
 # No arguments so prompt the user for them
 if len(sys.argv) == 1:
