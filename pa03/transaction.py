@@ -43,6 +43,14 @@ class Transaction:
         '''
         return self.runQuery("SELECT * FROM transactions", ())
 
+    def add(self, item):
+        '''
+        Add an item to the database.
+        
+        Author: Brandon J. Lacy (AG3NTZ3R0)
+        '''
+        return self.runQuery("INSERT INTO transactions VALUES(?, ?, ?, ?, ?)", (item['id'], item['amount'], item['category'], item['date'], item['description']))
+
     def runQuery(self, query, tuple):
         '''
         Execute the requested query and return items as a list of dictionaries.
