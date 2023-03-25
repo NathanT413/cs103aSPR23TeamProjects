@@ -34,7 +34,12 @@ options = {
 }
 
 try:
-    print(options[arg](vals))
-except Exception as e:
+    result = options[arg](vals)
+    if len(result) > 0:
+        for i in result: print(i)
+    else:
+        print("Completed.")
+except IndexError:
+    print("There were less parameters than expected.")
+except:
     print("Unavailable option specified.")
-    print(e)

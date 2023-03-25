@@ -38,6 +38,8 @@ class Transaction:
         '''
         Select all of the items in the database.
 
+        i.e. "python tracker.py --show-trans" 
+
         Author: Brandon J. Lacy (AG3NTZ3R0)
         '''
         return self.runQuery("SELECT * FROM transactions", ())
@@ -46,6 +48,8 @@ class Transaction:
         '''
         Add an item to the database.
         
+        i.e. "python tracker.py --add-trans 1 9.99 food 2023-03-23 fast-food"
+
         Author: Brandon J. Lacy (AG3NTZ3R0)
         '''
         return self.runQuery("INSERT INTO transactions VALUES(?, ?, ?, ?, ?)", (tup[0], tup[1], tup[2], tup[3], tup[4]))
