@@ -3,8 +3,6 @@ A module for the transaction class.
 
 Author: Brandon J. Lacy (AG3NTZ3R0)
 '''
-
-
 import os
 import sqlite3  # It is a part of the standard Python package and doesn't need to be installed
 
@@ -22,7 +20,8 @@ def toDict(row):
 class Transaction:
     '''
     A class that is responsible for the persistant storage of financial transactions.
-    
+    TEAM: ALL FUNCTIONS NEED A PARAMETER TUP TO FUNCTION WITH THE CLI FOR THE APP. YOU DO NOT NEED TO USE IT IN THE FUNCTION UNLESS A VALUE MUST BE PASSED IN TO IT.
+ 
     Author: Brandon J. Lacy (AG3NTZ3R0)
     '''
     
@@ -35,15 +34,27 @@ class Transaction:
         self.filepath = filepath
         self.runQuery("CREATE TABLE IF NOT EXISTS transactions (id INT, amount FLOAT, category TEXT, date DATE, description TEXT)", ())  
 
-    def selectAll(self):
+    def selectAll(self, tup):
         '''
         Select all of the items in the database.
+
+        i.e. "python tracker.py --show-trans" 
 
         Author: Brandon J. Lacy (AG3NTZ3R0)
         '''
         return self.runQuery("SELECT * FROM transactions", ())
 
-    def runQuery(self, query, tuple):
+    def add(self, tup):
+        '''
+        Add an item to the database.
+        
+        i.e. "python tracker.py --add-trans 1 9.99 food 2023-03-23 fast-food"
+
+        Author: Brandon J. Lacy (AG3NTZ3R0)
+        '''
+        return self.runQuery("INSERT INTO transactions VALUES(?, ?, ?, ?, ?)", (tup[0], tup[1], tup[2], tup[3], tup[4]))
+
+    def runQuery(self, query, tup):
         '''
         Execute the requested query and return items as a list of dictionaries.
 
@@ -51,8 +62,8 @@ class Transaction:
         '''
         con = sqlite3.connect(self.filepath)
         cur = con.cursor()
-        cur.execute(query, tuple)
-        tuples = cur.fetchall()
+        cur.execute(query, tup)
+        tups = cur.fetchall()
         con.commit()
         con.close()
-        return [toDict(t) for t in tuples]
+        return [toDict(t) for t in tups]
