@@ -49,6 +49,8 @@ def index():
 		<br>
 		<h2><a href="{url_for('sarcasm')}">Sarcasm</a></h2>
 		<br>
+		<h2><a href="{url_for('translate')}">Translate</a></h2>
+		<br>
 	 '''
 
 
@@ -121,6 +123,14 @@ in an academmic setting to allow him to gain a deeper understand of the technolo
 		He is an Arsenal fanatic with deep, deep disdain for Spurs and their trophyless club.</p>
 		<h3>Role</h3>
 		<p>Eric is responsible for creating the function sarcasm at <a href="{url_for('sarcasm')}">/sarcasm</a> rountes in gpt.py and his personal page</p>
+
+		<h2>Nathan Tran</h2>
+		<h3>Bio</h3>
+		<p>Nathan is a junior at Brandeis University studying Computer Science. His hobbies include playing volleyball and lifting weights. 
+		He is a setter on the Brandeis Men's Volleyball Team.</p>
+		<h3> Role </h3> 
+		<p>Nathan is responsible for creating <a href="{url_for('translate')}">/translate</a>, it's about page and his about page. </p>
+
 	'''
 	
 @app.route('/code_docs', methods=['GET', 'POST'])
@@ -217,6 +227,59 @@ def sarcasm():
 			</form>
 			<h2><a href="{url_for('index')}">Index</a></h2>
 		'''
+	
+
+
+@app.route('/translate', methods=['GET', 'POST'])
+def translate():
+	'''
+	Translate something to a different language
+	Nathan Tran
+	'''
+	if request.method == 'POST':
+		prompt = request.form['prompt']
+		lang = request.form['lang']
+		
+		answer = gptAPI.translate(prompt, lang)
+		return f'''
+			<h1>ChatGPT Translate</h1>
+			<h2><a href="{url_for('gpt_translate_about')}">About</a></h2>
+			<h2>Response</h2>
+			<pre style="border:thin solid black">{answer}</pre>
+			<h2><a href="{url_for('index')}">Index</a></h2>
+		'''
+	else:
+		return f'''
+			<h1>ChatGPT Code Documentation</h1>
+			<h2><a href="{url_for('gpt_translate_about')}">About</a></h2>
+			<h2>Query</h2>
+			<form method="post">
+				<h3><label for="lang">Language</label></h3>
+				<textarea name="lang"></textarea>
+				<br>
+				<h3><label for="prompt">Prompt: <label></h3>
+				<textarea name="prompt"></textarea>
+				<br>
+				<input type=submit>
+			</form>
+			<h2><a href="{url_for('index')}">Index</a></h2>
+		'''
+
+
+@app.route('/translate/about')
+def gpt_translate_about():
+	'''
+	The about page that corresponds with gpt_translate and explains the intent as well as the way to operate the route.
+	Nathan Tran
+	'''
+	return f'''
+		<h1>About Translate</h1>
+		<h2>Description</h2>
+		<p>This route translates the user's input into a different language. </p>
+		<h2>Instructions</h2>
+		<p>Enter what you want to translate and to what language to want to translate to into the appropriate text boxes.</p>
+		<h2><a href="{url_for('translate')}">Back to Translate</a></h2>
+	'''
 
 
 if __name__=='__main__':

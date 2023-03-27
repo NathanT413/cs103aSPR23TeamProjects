@@ -59,6 +59,14 @@ class GPT():
 		'''
 		query = f"{question}, give me a sarcastic response"
 		return self.getResponse(query)
+	
+	def translate(self, prompt, lang):
+		'''
+		Translate a prompt to a different language
+		Nathan Tran
+		'''
+		query = f"Translate {prompt} to {lang}"
+		return self.getResponse(query)
 
 
 if __name__=='__main__':
