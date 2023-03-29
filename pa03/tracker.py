@@ -35,6 +35,7 @@ options = {
     '--sum-trans-c': ""
 }
 
+# Author: Brandon J. Lacy (AG3NTZ3R0)
 try:
     result = options[ARG](vals)
     if len(result) > 0:
