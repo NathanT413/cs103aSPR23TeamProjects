@@ -11,20 +11,22 @@ from transaction import Transaction
 
 # Author: Brandon J. Lacy (AG3NTZ3R0)
 # Store the arguments from the command line execution of the script
+ARG = ""
+vals = ()
 # No arguments so prompt the user for them
 if len(sys.argv) == 1:
-    arg = input('cmd > ').split(' ')
+    ARG = input('cmd > ').split(' ')
 else:
-    arg = sys.argv[1]
+    ARG = sys.argv[1]
     # Store the values for the option
     vals = tuple(val for val in sys.argv[2:])
 
 # Author: Brandon J. Lacy (AG3NTZ3R0)
 trans_orm = Transaction('tracker.db')
-# Act upon the option specified by the user (TEAM: REPLACE "" WITH METHOD AS SEEN BELOW) 
+# Act upon the option specified by the user (TEAM: REPLACE "" WITH METHOD AS SEEN BELOW)
 options = {
     '--help': "",
-    '--show-trans': partial(trans_orm.selectAll),
+    '--show-trans': partial(trans_orm.select_all),
     '--add-trans': partial(trans_orm.add),
     '--del-trans': "",
     '--sum-trans-d': "",
@@ -34,12 +36,13 @@ options = {
 }
 
 try:
-    result = options[arg](vals)
+    result = options[ARG](vals)
     if len(result) > 0:
-        for i in result: print(i)
+        for i in result:
+            print(i)
     else:
         print("Completed.")
 except IndexError:
     print("There were less parameters than expected.")
-except:
+except KeyError:
     print("Unavailable option specified.")

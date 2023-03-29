@@ -3,28 +3,34 @@ A module for the transaction class.
 
 Author: Brandon J. Lacy (AG3NTZ3R0)
 '''
-import os
 import sqlite3  # It is a part of the standard Python package and doesn't need to be installed
 
 
-def toDict(row):
+def to_dict(row):
     '''
     Return a dictionary entry for each row.
     
     Author: Brandon J. Lacy (AG3NTZ3R0)
     '''
-    item = {'id': row[0], 'amount': row[1], 'category': row[2], 'date': row[3], 'description': row[4]}
-    return item 
+    item = {
+        'id': row[0],
+        'amount': row[1],
+        'category': row[2],
+        'date': row[3],
+        'description': row[4]
+    }
+    return item
 
 
 class Transaction:
     '''
     A class that is responsible for the persistant storage of financial transactions.
-    TEAM: ALL FUNCTIONS NEED A PARAMETER TUP TO FUNCTION WITH THE CLI FOR THE APP. YOU DO NOT NEED TO USE IT IN THE FUNCTION UNLESS A VALUE MUST BE PASSED IN TO IT.
+    TEAM: ALL FUNCTIONS NEED A PARAMETER TUP TO FUNCTION WITH THE CLI FOR THE APP. 
+    YOU DO NOT NEED TO USE IT IN THE FUNCTION UNLESS A VALUE MUST BE PASSED IN TO IT.
  
     Author: Brandon J. Lacy (AG3NTZ3R0)
     '''
-    
+
     def __init__(self, filepath):
         '''
         Establish a connection to the SQL database based upon the filepath provided as a parameter.
@@ -32,9 +38,13 @@ class Transaction:
         Author: Brandon J. Lacy (AG3NTZ3R0)
         '''
         self.filepath = filepath
-        self.runQuery("CREATE TABLE IF NOT EXISTS transactions (id INT, amount FLOAT, category TEXT, date DATE, description TEXT)", ())  
+        self.run_query('''
+            CREATE TABLE IF NOT EXISTS transactions 
+            (id INT, amount FLOAT, category TEXT, date DATE, description TEXT)
+            ''', ()
+        )
 
-    def selectAll(self, tup):
+    def select_all(self, tup):
         '''
         Select all of the items in the database.
 
@@ -42,7 +52,7 @@ class Transaction:
 
         Author: Brandon J. Lacy (AG3NTZ3R0)
         '''
-        return self.runQuery("SELECT * FROM transactions", ())
+        return self.run_query("SELECT * FROM transactions", tup)
 
     def add(self, tup):
         '''
@@ -52,9 +62,13 @@ class Transaction:
 
         Author: Brandon J. Lacy (AG3NTZ3R0)
         '''
-        return self.runQuery("INSERT INTO transactions VALUES(?, ?, ?, ?, ?)", (tup[0], tup[1], tup[2], tup[3], tup[4]))
+        return self.run_query('''
+            INSERT INTO transactions VALUES(?, ?, ?, ?, ?)
+            ''',
+        (tup[0], tup[1], tup[2], tup[3], tup[4])
+        )
 
-    def runQuery(self, query, tup):
+    def run_query(self, query, tup):
         '''
         Execute the requested query and return items as a list of dictionaries.
 
@@ -66,4 +80,4 @@ class Transaction:
         tups = cur.fetchall()
         con.commit()
         con.close()
-        return [toDict(t) for t in tups]
+        return [to_dict(t) for t in tups]
