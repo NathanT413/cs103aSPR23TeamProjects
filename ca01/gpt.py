@@ -67,6 +67,14 @@ class GPT():
 		'''
 		query = f"Translate {prompt} to {lang}"
 		return self.getResponse(query)
+	
+	def show_rec(self, genre):
+		'''
+		Recommend a TV show based on a genre
+		Grace Hu
+		'''
+		query = f"{genre}, give me a TV show recommendation and a brief summary of it"
+		return self.getResponse(query)
 
 
 if __name__=='__main__':
