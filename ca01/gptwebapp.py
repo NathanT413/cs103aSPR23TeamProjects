@@ -51,6 +51,8 @@ def index():
 		<br>
 		<h2><a href="{url_for('translate')}">Translate</a></h2>
 		<br>
+		<h2><a href="{url_for('show_rec')}">TV Show Recommendation</a></h2>
+		<br>
 	 '''
 
 
@@ -130,6 +132,13 @@ in an academmic setting to allow him to gain a deeper understand of the technolo
 		He is a setter on the Brandeis Men's Volleyball Team.</p>
 		<h3> Role </h3> 
 		<p>Nathan is responsible for creating <a href="{url_for('translate')}">/translate</a>, it's about page and his about page. </p>
+		
+		<h2>Grace Hu</h2>
+		<h3>Bio</h3>
+		<p>Grace is a senior at Brandeis University majoring in Business and Economics with a minor in Computer Science. She has two summer internship experiences at a co-investment startup working as a business analyst.
+		Her hobbies include playing volleyball, drawing, and rolling in gacha games.</p>
+		<h3>Role</h3>
+		<p>Grace was responsible for creating the <a href="{url_for('show_rec')}">/show_rec</a> route in gptwebapp.py and the show_rec method in gpt.py along with its about page and her personal page.</p>
 
 	'''
 	
@@ -281,6 +290,50 @@ def gpt_translate_about():
 		<h2><a href="{url_for('translate')}">Back to Translate</a></h2>
 	'''
 
+@app.route('/show_rec', methods=['GET','POST'])
+def show_rec():
+	'''
+	Recommends a show to the user based on their input and a brief summary of the show
+	Grace Hu
+	'''
+	if request.method == 'POST':
+		genre = request.form['genre']
+		show = gptAPI.show_rec(genre)
+		return f'''
+		<h1>ChatGPT Show Recommendation</h1>
+		<h2><a href="{url_for('show_rec_about')}">About</a></h2>
+		<h2>Response</h2>
+		<pre style="border:thin solid black">{show}</pre>
+		<h2><a href="{url_for('index')}">Index</a></h2>
+		'''
+	else:
+		return f'''
+			<h1>ChatGPT Show Recommendation</h1>
+			<h2><a href="{url_for('show_rec_about')}">About</a></h2>
+			<h2>Query</h2>
+			<form method="post">
+				<h3><label for="genre">Genre: </label></h3>
+				<textarea name="genre"></textarea>
+				<br>
+				<input type=submit>
+			</form>
+			<h2><a href="{url_for('index')}">Index</a></h2>
+		'''
+
+@app.route('/show_rec/about')
+def show_rec_about():
+	'''
+	The about page that corresponds with show_rec and explains the intent as well as the way to operate the route.
+	Grace Hu
+	'''
+	return f'''
+		<h1>About Show Recommendation</h1>
+		<h2>Description</h2>
+		<p>This route recommends a show to the user based on their input. It also provides a brief summary of what the show is about.</p>
+		<h2>Instructions</h2>
+		<p>Enter what genre of show you want to watch into the text box.</p>
+		<h2><a href="{url_for('show_rec')}">Back to Show Recommendation</a></h2>
+	'''
 
 if __name__=='__main__':
     # MacOS uses 5000 so need to run on 5001
