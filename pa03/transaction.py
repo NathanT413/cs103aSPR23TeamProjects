@@ -64,9 +64,49 @@ class Transaction:
         '''
         return self.run_query('''
             INSERT INTO transactions VALUES(?, ?, ?, ?, ?)
-            ''',
-        (tup[0], tup[1], tup[2], tup[3], tup[4])
-        )
+            ''', (tup[0], tup[1], tup[2], tup[3], tup[4]))
+    
+    def delete(self, tup):
+        '''
+        Deletes an item from the database.
+        
+        i.e. "python tracker.py --del-trans 5"
+
+        Author Eric Wang
+        '''
+
+        return self.run_query("DELETE FROM transactions WHERE id = (?)", tup[0])
+    
+    def sum_date(self, tup):
+        '''
+        Summarizes transactions by day given date, month and year
+        
+        i.e. "python tracker.py --sum-trans-d 2023-03-24"
+
+        Author Eric Wang
+        '''
+        return self.run_query("SELECT * FROM transactions WHERE date=?", tup)
+    
+    def sum_month(self, tup):
+        '''
+        Summarizes transactions by month given month and year
+        
+        i.e. "python tracker.py --sum-trans-m 2023-03"
+
+        Author Eric Wang
+        '''
+        return self.run_query("SELECT * FROM transactions WHERE date LIKE ? ORDER BY date DESC", ('%' + tup[0] + '%',))
+    
+    def sum_year(self, tup):
+        '''
+        Summarizes transactions by year given year
+        
+        i.e. "python tracker.py --sum-trans-y 2023"
+
+        Author Eric Wang
+        '''
+        return self.run_query("SELECT * FROM transactions WHERE date LIKE ? ORDER BY date DESC", ('%' + ''.join(tup) + '%',))
+        
 
     def run_query(self, query, tup):
         '''
