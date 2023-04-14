@@ -6,8 +6,7 @@
 const express = require('express');
 const router = express.Router();
 const transactionItem = require('../models/transactionItem')
-const User = require('../models/User')
-
+const User = require('../models/User');
 
 /*
 this is a very simple server which maintains a key/value
@@ -30,41 +29,28 @@ Brings up the transaction page
 */
 router.get('/transaction',
   isLoggedIn,
-  async (req, res, next) => {
-      let results =
-            await transactionItem.aggregate(
-                [ 
-                  {$group:{
-                    _id:'$userId',
-                    total:{$count:{}}
-                    }},
-                  {$sort:{total:-1}},              
-                ])
-              
-        results = 
-           await User.populate(results,
-                   {path:'_id',
-                   select:['description','amount','category','date']})
-        // res.json(results)
-        res.render('transaction',{results})
-});
+  async(req, res, next) => {
+    let results = await transactionItem.find().sort({ date: -1 }).exec();
+      res.render('transaction', { results });
+    }
+  )
 
 /*
 Author: Eric Wang
 
 Adds a transaction to DB
 */
-router.post('/transaction/add_transaction/:transactionId',
+router.post('/transaction',
   isLoggedIn,
   async (req, res, next) => {
-      const transaction = new transactionItem(
+      const trans = new transactionItem(
         {description:req.body.description,
          category:req.body.category,
          amount:req.body.amount,
          date:req.body.date,
-         userId:req.user._id
+         transactionId:req.transactionId
         })
-      await transaction.save();
+      await trans.save();
       res.redirect('/transaction')
 });
 
@@ -73,12 +59,12 @@ Author: Eric Wang
 
 Deletes selected transaction from DB
 */
-router.get('/transaction/remove/:transactionId',
+router.get('/transaction/delete_transaction/:transactionId',
   isLoggedIn,
   async (req, res, next) => {
-      console.log("inside /transaction/remove/:transactionId")
-      await transactionItem.deleteOne({_id:req.params.transactionId});
-      res.redirect('/transaction')
+      const trans = req.params.id;
+      await transactionItem.findByIdAndDelete(id).exec();
+      res.redirect('/transaction');
 });
 
-module.exports = router;
+module.exports = router
