@@ -43,4 +43,12 @@ router.get('/transaction',
         res.render('transaction',{results})
 });
 
+router.get('/transaction/remove/:itemId',
+  isLoggedIn,
+  async (req, res, next) => {
+      console.log("inside /todo/remove/:itemId")
+      await ToDoItem.deleteOne({_id:req.params.itemId});
+      res.redirect('/toDo')
+});
+
 module.exports = router;
