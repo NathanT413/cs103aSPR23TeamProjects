@@ -1,6 +1,16 @@
 <h1>Transactions for <%= user.username %></h1>
-<table class="table table-bordered table-striped">
+<table class="table table-bordered">
+  <tbody>
+    <tr>
+      <td><button class="btn btn-sm btn-primary">group by category</button></td>
+      <td><button class="btn btn-sm btn-primary">sort by category</button></td>
+      <td><button class="btn btn-sm btn-primary">sort by amount</button></td>
+      <td><button class="btn btn-sm btn-primary">sort by description</button></td>
+      <td><button class="btn btn-sm btn-primary">sort by date</button></td>
+    </tr>
+</tbody>
 
+<table class="table table-bordered table-striped">
     <thead>
         <tr>
             <th>description</th>
@@ -13,16 +23,16 @@
         </tr>
     </thead>
     <tbody>
-        <% results.map(item => {%>
+        <% results.map(transaction => {%>
             <tr>
-               <td> <%= item._id.description %> </td>
-               <td><%= item._id.amount %></td>
-               <td><%= item.category %></td>
-               <td><%= item.date %></td>
-               <td><a href="/todo/delete_transaction/<%=item._id %>">
+               <td> <%= transaction._id.description %> </td>
+               <td><%= transaction._id.amount %></td>
+               <td><%= transaction.category %></td>
+               <td><%= transaction.date %></td>
+               <td><a href="/todo/delete_transaction/<%=transaction._id %>">
                 <i class="bi bi-trash"></i>
               </a></td>
-              <td><a href="/todo/edit_transaction/<%=item._id %>">
+              <td><a href="/todo/edit_transaction/<%=transaction._id %>">
                 <i class="bi bi-pencil-square"></i>
               </a></td>
             </tr>

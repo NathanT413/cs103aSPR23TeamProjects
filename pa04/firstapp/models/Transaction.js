@@ -1,3 +1,4 @@
+// Author: Eric Wang
 
 'use strict';
 const mongoose = require( 'mongoose' );
