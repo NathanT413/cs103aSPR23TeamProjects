@@ -41,8 +41,6 @@ router.get('/todo/',
             res.render('toDoList',{items,show,completed});
 });
 
-
-
 /* add the value in the body to the list associated to the key */
 router.post('/todo',
   isLoggedIn,

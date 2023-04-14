@@ -5,7 +5,7 @@
 */
 const express = require('express');
 const router = express.Router();
-const Transactions = require('../models/Transaction')
+const transactionItem = require('../models/transactionItem')
 const User = require('../models/User')
 
 
@@ -32,7 +32,7 @@ router.get('/transaction',
   isLoggedIn,
   async (req, res, next) => {
       let results =
-            await Transactions.aggregate(
+            await transactionItem.aggregate(
                 [ 
                   {$group:{
                     _id:'$userId',
@@ -52,32 +52,33 @@ router.get('/transaction',
 /*
 Author: Eric Wang
 
-Deletes selected transaction from DB
+Adds a transaction to DB
 */
-router.get('/transaction/remove/:itemId',
+router.post('/transaction/add_transaction/:transactionId',
   isLoggedIn,
   async (req, res, next) => {
-      console.log("inside /todo/remove/:itemId")
-      await ToDoItem.deleteOne({_id:req.params.itemId});
+      const transaction = new transactionItem(
+        {description:req.body.description,
+         category:req.body.category,
+         amount:req.body.amount,
+         date:req.body.date,
+         userId:req.user._id
+        })
+      await transaction.save();
       res.redirect('/transaction')
 });
 
 /*
 Author: Eric Wang
 
-Brings up edit_transaction page
+Deletes selected transaction from DB
 */
-router.get('/todo/edit/:itemId',
+router.get('/transaction/remove/:transactionId',
   isLoggedIn,
   async (req, res, next) => {
-      console.log("inside /todo/edit/:itemId")
-      const item = 
-       await ToDoItem.findById(req.params.itemId);
-      //res.render('edit', { item });
-      res.locals.item = item
-      res.render('edit_transaction')
-      //res.json(item)
+      console.log("inside /transaction/remove/:transactionId")
+      await transactionItem.deleteOne({_id:req.params.transactionId});
+      res.redirect('/transaction')
 });
-
 
 module.exports = router;

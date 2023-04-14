@@ -34,10 +34,10 @@ Handles redirects and functions to pa04.
                <td><%= transaction._id.amount %></td>
                <td><%= transaction.category %></td>
                <td><%= transaction.date %></td>
-               <td><a href="/todo/delete_transaction/<%=transaction._id %>">
+               <td><a href="/transaction/delete_transaction<%=transaction._id %>">
                 <i class="bi bi-trash"></i>
               </a></td>
-              <td><a href="/todo/edit_transaction/<%=transaction._id %>">
+              <td><a href="/transaction/edit_transaction/<%=transaction._id %>">
                 <i class="bi bi-pencil-square"></i>
               </a></td>
             </tr>
@@ -46,10 +46,11 @@ Handles redirects and functions to pa04.
   </table>
 
 <h1>Add a New Transaction</h1>
-<form action="/transaction/addTransaction" method = "POST">
-  <input type="Text" id="description" name="description" placeholder="description" required><br><br>
-  <input type="Text" id="category" name="category" placeholder="category" required><br><br>
-  <input type="Number" id="amount" name="amount" placeholder="amount" required><br><br>
-  <input type="Text" id="date" name="date" placeholder="mm/dd/yyyy" required><br><br>
-  <button type="submit">Store</button>
-</form> 
+
+<form method="POST" action="transaction">
+  <input type="text" id="description" name="description" placeholder="description" required><br>
+  <input type="text" id="category" name="category" placeholder="category" required><br>
+  <input type="Number" id="amount" name="amount" placeholder="amount" required><br>
+  <input type="text" id="date" name="date" placeholder="mm/dd/yyyy" required><br>
+  <input type="submit" values="store">
+</form>
