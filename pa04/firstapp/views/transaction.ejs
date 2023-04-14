@@ -1,3 +1,8 @@
+<!-- Author: Eric Wang
+This is the primary page for transaction.
+Handles redirects and functions to pa04.
+-->
+
 <h1>Transactions for <%= user.username %></h1>
 <table class="table table-bordered">
   <tbody>
@@ -38,4 +43,13 @@
             </tr>
             <% }) %>
     </tbody>
-</table>
+  </table>
+
+<h1>Add a New Transaction</h1>
+<form action="/transaction/addTransaction" method = "POST">
+  <input type="Text" id="description" name="description" placeholder="description" required><br><br>
+  <input type="Text" id="category" name="category" placeholder="category" required><br><br>
+  <input type="Number" id="amount" name="amount" placeholder="amount" required><br><br>
+  <input type="Text" id="date" name="date" placeholder="mm/dd/yyyy" required><br><br>
+  <button type="submit">Store</button>
+</form> 
