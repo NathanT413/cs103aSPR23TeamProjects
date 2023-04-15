@@ -8,12 +8,6 @@ const router = express.Router();
 const transactionItem = require('../models/transactionItem')
 const User = require('../models/User');
 
-/*
-this is a very simple server which maintains a key/value
-store using an object where the keys and values are lists of strings
-
-*/
-
 isLoggedIn = (req,res,next) => {
   if (res.locals.loggedIn) {
     next()
@@ -49,9 +43,9 @@ router.post('/transaction',
          amount:req.body.amount,
          date:req.body.date,
          transactionId:req.transactionId
-        })
+        }) 
       await trans.save();
-      res.redirect('/transaction')
+      res.redirect('/transaction');
 });
 
 /*
@@ -61,10 +55,11 @@ Deletes selected transaction from DB
 */
 router.get('/transaction/delete_transaction/:transactionId',
   isLoggedIn,
-  async (req, res, next) => {
-      const trans = req.params.id;
-      await transactionItem.findByIdAndDelete(id).exec();
-      res.redirect('/transaction');
-});
+  async(req,res,next) => {
+    await transactionItem.findOneAndDelete(
+      {_id:req.body.transactionId}
+    )
+    res.redirect('/transaction')
+  });
 
 module.exports = router

@@ -10,6 +10,7 @@ var transactionSchema = Schema( {
   amount: Number,
   category: String,
   date: Date,
+  transactionId: {type:ObjectId, ref:'trans'}
 });
 
 module.exports = mongoose.model( 'TransactionItem', transactionSchema);
