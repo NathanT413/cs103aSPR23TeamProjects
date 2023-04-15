@@ -33,7 +33,11 @@ Handles redirects and functions to pa04.
                <td><%= transaction.amount %></td>
                <td><%= transaction.category %></td>
                <td><%= new Date(transaction.date).toLocaleString('en-US', 
-                { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' }) %></td>
+                { weekday: 'short', 
+                year: 'numeric',
+                month: 'short', 
+                day: 'numeric' 
+                }).replace(/,/g,'') %></td>
                <td><a href="/transaction/delete_transaction/<%=transaction._id %>">
                 <i class="bi bi-trash"></i>
               </a></td>
@@ -50,7 +54,7 @@ Handles redirects and functions to pa04.
 <form method="POST" action="transaction">
   <input type="text" id="description" name="description" placeholder="description" required><br>
   <input type="text" id="category" name="category" placeholder="category" required><br>
-  <input type="Number" id="amount" name="amount" placeholder="amount" required><br>
-  <input type="date" id="date" name="date" placeholder="mm/dd/yyyy" required><br>
+  <input type="text" id="amount" name="amount" placeholder="amount"><br>
+  <input type="text" id="date" name="date" placeholder="mm/dd/yyyy" required><br>
   <input type="submit" values="store">
 </form>
