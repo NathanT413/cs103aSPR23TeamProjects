@@ -42,7 +42,8 @@ router.post('/transaction',
          category:req.body.category,
          amount:req.body.amount,
          date:req.body.date,
-         transactionId:req.transactionId
+         transactionId:req.transactionId,
+         userId:req.userId
         }) 
       await trans.save();
       res.redirect('/transaction');
@@ -56,9 +57,7 @@ Deletes selected transaction from DB
 router.get('/transaction/delete_transaction/:transactionId',
   isLoggedIn,
   async(req,res,next) => {
-    await transactionItem.findOneAndDelete(
-      {_id:req.body.transactionId}
-    )
+    await transactionItem.findByIdAndDelete(req.params.transactionId);
     res.redirect('/transaction')
   });
 

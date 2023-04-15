@@ -7,11 +7,11 @@ Handles redirects and functions to pa04.
 <table class="table table-bordered">
   <tbody>
     <tr>
-      <td><button class="btn btn-sm btn-primary">group by category</button></td>
-      <td><button class="btn btn-sm btn-primary">sort by category</button></td>
-      <td><button class="btn btn-sm btn-primary">sort by amount</button></td>
-      <td><button class="btn btn-sm btn-primary">sort by description</button></td>
-      <td><button class="btn btn-sm btn-primary">sort by date</button></td>
+      <td><button class="btn btn-sm btn-primary" href="">group by category</button></td>
+      <td><button class="btn btn-sm btn-primary" href="">sort by category</button></td>
+      <td><button class="btn btn-sm btn-primary" href="">sort by amount</button></td>
+      <td><button class="btn btn-sm btn-primary" href="">sort by description</button></td>
+      <td><button class="btn btn-sm btn-primary" href="">sort by date</button></td>
     </tr>
 </tbody>
 
@@ -24,18 +24,17 @@ Handles redirects and functions to pa04.
             <th>date</th>
             <th>delete</th>
             <th>edit</th>
-
         </tr>
     </thead>
     <tbody>
         <% results.map(transaction => {%>
             <tr>
-               <td> <%= transaction.description %> </td>
+               <td><%= transaction.description %> </td>
                <td><%= transaction.amount %></td>
                <td><%= transaction.category %></td>
                <td><%= new Date(transaction.date).toLocaleString('en-US', 
                 { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' }) %></td>
-               <td><a href="/transaction/delete_transaction<%=transaction._id %>">
+               <td><a href="/transaction/delete_transaction/<%=transaction._id %>">
                 <i class="bi bi-trash"></i>
               </a></td>
               <td><a href="/transaction/edit_transaction/<%=transaction._id %>">
