@@ -6,3 +6,27 @@ body {
 a {
   color: #00B7FF;
 }
+
+table, th, td {
+  border: 1px solid;
+  border-collapse: collapse;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+table {
+  width: 100%;
+}
+
+th {
+  font-weight: bold;
+}
+
+td input {
+  width: 98%;
+  background: transparent;
+  border: none;
+}
+
+td input[type=submit] {
+  margin: auto;
+}

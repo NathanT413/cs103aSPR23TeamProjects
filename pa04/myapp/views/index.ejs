@@ -6,6 +6,36 @@
   </head>
   <body>
     <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <p>Welcome to the <%= title %></p>
+    <h2>All Transactions</h2>
+    <table>
+      <tr>
+        <th>Description</th>
+        <th>Amount</th>
+        <th>Category</th>
+        <th>Date</th>
+        <th>Delete</th>
+        <th>Edit</th>
+      </tr>
+    </table>
+    <h2>Add Transaction<h2>
+    <form method="POST" action="transaction">
+      <table>
+        <tr>
+          <th>Description</th>
+          <th>Category</th>
+          <th>Amount</th>
+          <th>Date</th>
+          <th>Submit</th>
+        </tr>
+        <tr>
+          <td><input type="text" id="description" name="description" placeholder="Kentucky Fried Chicken" required></td>
+          <td><input type="text" id="category" name="category" placeholder="Fast Food" required></td>
+          <td><input type="text" id="amount" name="amount" placeholder="12.99" required></td>
+          <td><input type="text" id="date" name="date" placeholder="MM/DD/YYYY" required></td>
+          <td><input type="submit" value="Store"></td>
+        </tr>
+      </table>
+    </form>
   </body>
 </html>
