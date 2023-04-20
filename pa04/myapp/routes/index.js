@@ -3,7 +3,7 @@ var router = express.Router();
 
 var mongoose = require('mongoose');
 
-mongoose.connect('mongodb+srv://blacy:4dvSEYSs8j$Rl0b&@wxveshack-db.yrr7y.mongodb.net/?retryWrites=true&w=majority');
+mongoose.connect('INSERT MONGODB URI HERE');
 
 var Schema = mongoose.Schema;
 
