@@ -1,8 +1,9 @@
 var express = require('express');
 var router = express.Router();
+
 var mongoose = require('mongoose');
 
-mongoose.connect(process.env.MONGODB_URI);
+mongoose.connect('mongodb+srv://blacy:4dvSEYSs8j$Rl0b&@wxveshack-db.yrr7y.mongodb.net/?retryWrites=true&w=majority');
 
 var Schema = mongoose.Schema;
 
@@ -13,20 +14,18 @@ var transactionSchema = Schema({
   date: Date
 });
 
-var transactionItem = mongoose.model('Transactionitem', transactionSchema);
+var TransactionItem = mongoose.model('transactionItem', transactionSchema);
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  var transactions = transactionItem.find();
-
-  res.render('index', {
-    title: 'Transaction Application',
-    transaction: transactions 
-  });
+  TransactionItem.find()
+    .then(function(doc) {
+      res.render('index', {transactions: doc});
+    });
 });
 
 router.post('/', function(req, res, next) {
-  var transaction = new transactionItem({
+  var transaction = new TransactionItem({
     description: req.body.description,
     category: req.body.category,
     amount: req.body.amount,
