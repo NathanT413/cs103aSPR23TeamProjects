@@ -10,6 +10,9 @@ A recreation of PA03 as an Express Application with MongoDB through Mongoose.
 ## myapp
 A project created on version 19.9.0 because I was unable to get firstapp to work on my machine, no discredit to Eric's work on that application. 
 
+## Instructions
+You will need to insert your MONGODB_URI within the routes/index.js file before able to use a database.
+
 ### Current Status
 The infrastructure of the application has been created as well as the add and show transaction features. 
 
