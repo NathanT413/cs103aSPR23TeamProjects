@@ -11,4 +11,6 @@ A folder with all of our team's work.
 
 ## Projects
 - CA01
+- CA02
 - PA03
+- PA04
