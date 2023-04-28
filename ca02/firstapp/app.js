@@ -5,8 +5,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const layouts = require("express-ejs-layouts");
 const pw_auth_router = require('./routes/pwauth')
-const toDoRouter = require('./routes/todo');
-const weatherRouter = require('./routes/weather');
+const codeCommentGenRouter = require('./routes/codeCommentGen');
 
 const User = require('./models/User');
 
@@ -16,19 +15,18 @@ const User = require('./models/User');
 const mongodb_URI = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/pwdemo';
 console.log('MONGODB_URI=',process.env.MONGODB_URI);
 
+console.log('MONGODB_URI=', mongodb_URI);
+
 const mongoose = require( 'mongoose' );
 
 mongoose.connect( mongodb_URI);
 
 const db = mongoose.connection;
 
-
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
   console.log("we are connected!!!")
 });
-
-
 
 /* **************************************** */
 /* Enable sessions and storing session data in the database */
@@ -45,7 +43,6 @@ const store = new MongoDBStore({
 store.on('error', function(error) {
   console.log(error);
 });
-
 
 /* **************************************** */
 /*  middleware to make sure a user is logged in */
@@ -88,9 +85,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-
-
-
 app.use(pw_auth_router)
 
 app.use(layouts);
@@ -99,15 +93,19 @@ app.get('/', (req,res,next) => {
   res.render('index');
 })
 
-app.get('/about', 
-  isLoggedIn,
+app.get('/about',
   (req,res,next) => {
     res.render('about');
   }
 )
 
-app.use(toDoRouter);
-app.use(weatherRouter);
+app.get('/team',
+    (req,res,next) => {
+      res.render('team');
+    }
+)
+
+app.use(codeCommentGenRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
