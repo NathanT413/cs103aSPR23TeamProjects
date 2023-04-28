@@ -1,1 +1,16 @@
 <h1>Code Comment Generator</h1>
+
+<h2>Most Recent Dialogue</h2>
+<h3>Prompt</h3>
+<p><%= dialogue.prompt %></p>
+<h3>Response</h3>
+<p><%= dialogue.response%></p>
+
+<h2></h2>
+<form method="POST" action="/codeCommentGen">
+    <input type="text" id="language" name="language" placeholder="Python" required>
+    <br>
+    <input type="text" id="prompt" name="prompt" placeholder="print('Hello, World!')" required>
+    <br>
+    <input type="submit" value="Ask">
+</form>
