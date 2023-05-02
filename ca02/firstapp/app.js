@@ -6,13 +6,14 @@ const logger = require('morgan');
 const layouts = require("express-ejs-layouts");
 const pw_auth_router = require('./routes/pwauth')
 const codeCommentGenRouter = require('./routes/codeCommentGen');
+const sarcasticResponse = require('./routes/sarcasticResponse');
 
 const User = require('./models/User');
 
 /* **************************************** */
 /*  Connecting to a Mongo Database Server   */
 /* **************************************** */
-const mongodb_URI = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/pwdemo';
+const mongodb_URI = process.env.MONGODB_URI;
 console.log('MONGODB_URI=',process.env.MONGODB_URI);
 
 console.log('MONGODB_URI=', mongodb_URI);
@@ -106,6 +107,7 @@ app.get('/team',
 )
 
 app.use(codeCommentGenRouter);
+app.use(sarcasticResponse);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

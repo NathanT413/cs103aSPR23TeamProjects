@@ -131,3 +131,5 @@ dist
 
 #Ignore IDEA
 .idea
+
+startup.sh
