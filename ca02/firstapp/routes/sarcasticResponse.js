@@ -32,13 +32,16 @@ router.get('/sarcasticResponse', isLoggedIn, async (req, res, ) => {
 router.post('/sarcasticResponse',
     isLoggedIn,
     async (req, res, ) => {
-        const prompt = "Ask us any question to get an answer";
-
-        const completion = await openai.createCompletion({
+        const prompt = req + ", give me a sarcastic response";
+        const response = await openai.createCompletion({
             model: "text-davinci-003",
             prompt: prompt,
+            max_tokens: 2048,
+            temperature: 1,
         });
+
         const answer = completion.data.choices[0].text;
+
         const conversation = new ChatGPT (
             {
                 date: new Date(),
@@ -49,6 +52,5 @@ router.post('/sarcasticResponse',
         await conversation.save();
         res.redirect('/sarcasticResponse')
     });
-
 
 module.exports = router;
