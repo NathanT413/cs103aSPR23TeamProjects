@@ -21,7 +21,6 @@ On Windows:
 from flask import request, redirect, url_for, Flask
 from gpt import GPT
 
-
 import os
 
 app = Flask(__name__)
