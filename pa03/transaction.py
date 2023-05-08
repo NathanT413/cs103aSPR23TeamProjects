@@ -107,6 +107,35 @@ class Transaction:
         '''
         return self.run_query("SELECT * FROM transactions WHERE date LIKE ? ORDER BY date DESC", ('%' + ''.join(tup) + '%',))
         
+    def sum_category(self, tup):
+        '''
+        Summarizes transactions by category given category
+        
+        i.e. "python tracker.py --sum-category food"
+        
+        Author Grace Hu
+        '''
+        return self.run_query("SELECT * FROM transactions WHERE category=?", tup[2])
+    
+    def add_category(self, column, type):
+        '''
+        Adds a category to the database
+        
+        i.e. "python tracker.py --add-category food"
+        
+        Author Grace Hu
+        '''
+        return self.runQuery(f"ALTER TABLE transactions ADD COLUMN {column} {type}")
+    
+    def modify_category(self, old, new):
+        '''
+        Modifies a category in the database
+        
+        i.e. "python tracker.py --modify-category food stationery"
+        
+        Author Grace Hu
+        '''
+        return self.run_query(f"ALTER TABLE transactions RENAME COLUMN {old} TO {new}")
 
     def run_query(self, query, tup):
         '''
