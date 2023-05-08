@@ -198,40 +198,93 @@ def test_sum_month(transaction_db):
 
     assert results == expect
 
-    def test_sum_year(transaction_db):
-        '''
-        Test the ability to find transaction given the year.
+def test_sum_year(transaction_db):
+    '''
+    Test the ability to find transaction given the year.
         
-        Author: Eric Wang
-        '''
-        trans_orm = transaction_db
+    Author: Eric Wang
+    '''
+    trans_orm = transaction_db
 
-        tup2 = (5, 120450.99, 'MercedesACLass', '2019-04-23', 'Vehical')
-        tup3 =(6, 5040.0, 'MacbookPro', '2019-05-19', 'computer')
-        tup1 = (7, 1250.0, 'Ipad', '2019-05-19', 'tablet')
-        expect = []
-        expect.append({
-            'id': tup3[0],
-            'amount': tup3[1],
-            'category': tup3[2],
-            'date': tup3[3],
-            'description': tup3[4]
-        })
-        expect.append({
-            'id': tup1[0],
-            'amount': tup1[1],
-            'category': tup1[2],
-            'date': tup1[3],
-            'description': tup1[4]
-        })
-        expect.append({
-            'id': tup2[0],
-            'amount': tup2[1],
-            'category': tup2[2],
-            'date': tup2[3],
-            'description': tup2[4]
-        })
+    tup2 = (5, 120450.99, 'MercedesACLass', '2019-04-23', 'Vehical')
+    tup3 =(6, 5040.0, 'MacbookPro', '2019-05-19', 'computer')
+    tup1 = (7, 1250.0, 'Ipad', '2019-05-19', 'tablet')
+    expect = []
+    expect.append({
+        'id': tup3[0],
+        'amount': tup3[1],
+        'category': tup3[2],
+        'date': tup3[3],
+        'description': tup3[4]
+    })
+    expect.append({
+        'id': tup1[0],
+        'amount': tup1[1],
+        'category': tup1[2],
+        'date': tup1[3],
+        'description': tup1[4]
+    })
+    expect.append({
+        'id': tup2[0],
+        'amount': tup2[1],
+        'category': tup2[2],
+        'date': tup2[3],
+        'description': tup2[4]
+    })
     
-        results = trans_orm.sum_month(['2019'])
+    results = trans_orm.sum_month(['2019'])
 
-        assert results == expect
+    assert results == expect
+        
+def test_sum_category(transaction_db):
+    '''
+    Test the ability to find transaction given the category.
+
+    Author Grace Hu
+    '''
+    trans_orm = transaction_db
+    tup1 = (1, 9.99, 'food', '2023-03-23', 'fast-food')
+    tup2 = (2, 99.99, 'food', '2023-03-28', 'groceries')
+    expect = []
+    expect.append({
+        'id': tup1[0],
+        'amount': tup1[1],
+        'category': tup1[2],
+        'date': tup1[3],
+        'description': tup1[4]
+    })
+    expect.append({
+        'id': tup2[0],
+        'amount': tup2[1],
+        'category': tup2[2],
+        'date': tup2[3],
+        'description': tup2[4]
+    })
+
+    results = trans_orm.sum_category(['food'])
+
+    assert results == expect
+
+def test_add_category(transaction_db):
+    '''
+    Test the ability to add a category to the database.
+
+    Author Grace Hu
+    '''
+    trans_orm = transaction_db
+    tup = (1, 9.99, 'food', '2023-03-23', 'fast-food', 'cash')
+    updated_example_data_dict = example_data_dict
+    updated_example_data_dict.append({
+        'id': tup[0],
+        'amount': tup[1],
+        'category': tup[2],
+        'date': tup[3],
+        'description': tup[4],
+        'payment': tup[5]
+    })
+
+    trans_orm.add(tup)
+
+    results = trans_orm.select_all(())
+
+    assert results == updated_example_data_dict
