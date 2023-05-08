@@ -21,18 +21,23 @@ else:
     # Store the values for the option
     vals = tuple(val for val in sys.argv[2:])
 
-# Author: Brandon J. Lacy (AG3NTZ3R0), Eric Wang
+# Author: Brandon J. Lacy (AG3NTZ3R0), Eric Wang, Grace Hu
 trans_orm = Transaction('tracker.db')
 # Act upon the option specified by the user (TEAM: REPLACE "" WITH METHOD AS SEEN BELOW)
 options = {
     '--help': "",
+    '--quit': "",
+    '--show-cat': "",
+    '--add-cat': partial(trans_orm.add_category),
+    '--mod-cat': partial(trans_orm.modify_category),
     '--show-trans': partial(trans_orm.select_all),
     '--add-trans': partial(trans_orm.add),
     '--del-trans': partial(trans_orm.delete),
     '--sum-trans-d': partial(trans_orm.sum_date),
     '--sum-trans-m': partial(trans_orm.sum_month),
     '--sum-trans-y': partial(trans_orm.sum_year),
-    '--sum-trans-c': "",
+    '--sum-trans-c': partial(trans_orm.sum_category),
+    '--print-menu': "",
 }
 
 # Author: Brandon J. Lacy (AG3NTZ3R0)
