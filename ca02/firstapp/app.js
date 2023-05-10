@@ -7,6 +7,7 @@ const layouts = require("express-ejs-layouts");
 const pw_auth_router = require('./routes/pwauth')
 const codeCommentGenRouter = require('./routes/codeCommentGen');
 const sarcasticResponse = require('./routes/sarcasticResponse');
+const tvShowRecs = require('./routes/tvShowRecs');
 
 const User = require('./models/User');
 
@@ -108,6 +109,7 @@ app.get('/team',
 
 app.use(codeCommentGenRouter);
 app.use(sarcasticResponse);
+app.use(tvShowRecs);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
